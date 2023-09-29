@@ -242,14 +242,14 @@ namespace PoliziaMunicipale_MVC.Controllers
                 conn.Open();
                 SqlCommand queryVisualizzaViolazioniConImportoElevato = new SqlCommand(@"
             SELECT
-                v.Importo,
-                a.Cognome AS CognomeTrasgressore,
-                a.Nome AS NomeTrasgressore,
-                v.DataViolazione,
-                v.DecurtamentoPunti
-            FROM Verbale v
-            INNER JOIN Anagrafica a ON v.IdAnagrafica = a.IdAnagrafica
-            WHERE v.Importo > 400", conn);
+                Verbale.Importo,
+                Anagrafica.Cognome AS CognomeTrasgressore,
+                Anagrafica.Nome AS NomeTrasgressore,
+                Verbale.DataViolazione,
+                Verbale.DecurtamentoPunti
+            FROM Verbale
+            INNER JOIN Anagrafica ON Verbale.IdAnagrafica = Anagrafica.IdAnagrafica
+            WHERE Verbale.Importo > 400", conn);
 
                 SqlDataReader reader = queryVisualizzaViolazioniConImportoElevato.ExecuteReader();
 
