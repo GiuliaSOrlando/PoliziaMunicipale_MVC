@@ -1,0 +1,44 @@
+﻿@model List<TrasgressorePunti>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primar text-white">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per anagrafica", "VisualizzaTotaleVerbaliTrascrittiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per punti", "VisualizzaTotalePuntiDecurtatiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per punti (10)", "VisualizzaViolazioniDieci", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per importo (400)", "VisualizzaViolazioniConImportoElevato", "Verbali", new { @class = "nav-link" })
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<h2>Totale punti decurtati per trasgressore</h2>
+
+<table class="table">
+    <thead>
+        <tr style="background-color: #007bff; color: white;">
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Totale Punti Decurtati</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trasgressore in Model)
+        {
+            <tr>
+                <td>@trasgressore.NomeTrasgressore</td>
+                <td>@trasgressore.CognomeTrasgressore</td>
+                <td>@trasgressore.TotalePuntiDecurtati</td>
+            </tr>
+        }
+    </tbody>
+</table>

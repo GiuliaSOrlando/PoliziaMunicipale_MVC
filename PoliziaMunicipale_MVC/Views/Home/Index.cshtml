@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row">
+        <h1 class="text-primary">Benvenuti nella Gestione Contravvenzioni</h1>
+        <p class="lead">Questa applicazione Web consente di gestire le contravvenzioni del Corpo di Polizia Municipale in modo efficiente e organizzato.</p>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4">
+            <h2 class="text-primary fw-normal">Anagrafica Trasgressori</h2>
+            <p>
+                Registra i dati dei trasgressori in questa sezione. Mantieni un registro completo con tutte le informazioni necessarie.
+            </p>
+            @Html.ActionLink("Scopri di più", "Index", "Anagrafica", null, new { @class = "btn btn-outline-primary" })
+        </section>
+        <section class="col-md-4">
+            <h2 class="text-primary fw-normal">Elenco Violazioni</h2>
+            <p>Visualizza un elenco completo delle violazioni registrate. Trova tutte le informazioni necessarie per la gestione delle contravvenzioni.</p>
+            @Html.ActionLink("Scopri di più", "Index", "Violazioni", null, new { @class = "btn btn-outline-primary" })
+        </section>
+        <section class="col-md-4">
+            <h2 class="text-primary fw-normal">Compilazione Verbale</h2>
+            <p>Compila i verbali delle violazioni in modo rapido ed efficiente. Semplifica il processo di documentazione.</p>
+            @Html.ActionLink("Scopri di più", "Index", "Verbali", null, new { @class = "btn btn-outline-primary" })
+        </section>
+    </div>
+</main>

@@ -1,0 +1,111 @@
+﻿@model PoliziaMunicipale_MVC.Verbale
+
+@{
+    ViewBag.Title = "Create";
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-primar text-white">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per anagrafica", "VisualizzaTotaleVerbaliTrascrittiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per punti", "VisualizzaTotalePuntiDecurtatiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per punti (10)", "VisualizzaViolazioniDieci", "Verbali", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Violazioni per importo (400)", "VisualizzaViolazioniConImportoElevato", "Verbali", new { @class = "nav-link" })
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4 class="text-primary">Nuovo verbale</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataViolazione, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataViolazione, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IndirizzoViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IndirizzoViolazione, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IndirizzoViolazione, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NominativoAgente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NominativoAgente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NominativoAgente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataTrascrizioneVerbale, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataTrascrizioneVerbale, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataTrascrizioneVerbale, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Importo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Importo, new { htmlAttributes = new { type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Importo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DecurtamentoPunti, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DecurtamentoPunti, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DecurtamentoPunti, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdAnagrafica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model=>model.IdAnagrafica, new SelectList(ViewBag.ListaAnagrafica, "Value", "Text"), "-- Seleziona trasgressore --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdAnagrafica, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdViolazione, new SelectList(ViewBag.ListaViolazioni, "Value", "Text"), "-- Seleziona violazione --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdViolazione, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <br />
+            <input type="submit" value="Inserisci nuovo verbale" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
