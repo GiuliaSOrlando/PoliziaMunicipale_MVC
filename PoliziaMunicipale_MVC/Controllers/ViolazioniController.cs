@@ -16,6 +16,7 @@ namespace PoliziaMunicipale_MVC.Controllers
         public static List<TipoDiViolazione> listaviolazioni = new List<TipoDiViolazione>();
         public ActionResult Index()
         {
+            TempData["controllerDorigine"] = this.ControllerContext.RouteData.Values["controller"].ToString();
             string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             List<TipoDiViolazione> listaviolazioni = TipoDiViolazione.GetDataFromDB(connectionString);
             return View(listaviolazioni);

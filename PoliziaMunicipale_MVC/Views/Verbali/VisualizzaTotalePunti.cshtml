@@ -2,33 +2,33 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                @Html.ActionLink("Violazioni per anagrafica", "VisualizzaTotaleVerbaliTrascrittiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+                @Html.ActionLink("Violazioni per anagrafica", "VisualizzaTotaleVerbali", "Verbali", new { @class = "nav-link text-primary fw-bolder" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Violazioni per punti", "VisualizzaTotalePuntiDecurtatiPerTrasgressore", "Verbali", new { @class = "nav-link" })
+                @Html.ActionLink("Violazioni per punti", "VisualizzaTotalePunti", "Verbali", new { @class = "nav-link text-primary fw-bolder" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Violazioni per punti (10)", "VisualizzaViolazioniDieci", "Verbali", new { @class = "nav-link" })
+                @Html.ActionLink("Violazioni per punti (10)", "VisualizzaViolazioniDieci", "Verbali", new { @class = "nav-link text-primary fw-bolder" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Violazioni per importo (400)", "VisualizzaViolazioniConImportoElevato", "Verbali", new { @class = "nav-link" })
+                @Html.ActionLink("Violazioni per importo (400)", "VisualizzaViolazioniQuattrocento", "Verbali", new { @class = "nav-link text-primary fw-bolder" })
             </li>
 
         </ul>
     </div>
 </nav>
 
-<h2>Totale punti decurtati per trasgressore</h2>
+<h4 class="text-bg-primary text-center p-2">Totale punti decurtati per trasgressore</h4>
 
 <table class="table">
     <thead>
         <tr style="background-color: #007bff; color: white;">
             <th>Nome</th>
             <th>Cognome</th>
-            <th>Totale Punti Decurtati</th>
+            <th>Totale punti decurtati</th>
         </tr>
     </thead>
     <tbody>

@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace PoliziaMunicipale_MVC.Controllers
-{
+{ 
+
     public class AnagraficaController : Controller
     {
 
@@ -17,6 +18,7 @@ namespace PoliziaMunicipale_MVC.Controllers
         public ActionResult Index()
 
         {
+            TempData["controllerDorigine"] = this.ControllerContext.RouteData.Values["controller"].ToString();
             string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             List<Anagrafica> listaanagrafica = Anagrafica.GetDataFromDB(connectionString);
             return View(listaanagrafica);
@@ -24,6 +26,7 @@ namespace PoliziaMunicipale_MVC.Controllers
 
         public ActionResult Create()
         {
+
             return View();
         }
 

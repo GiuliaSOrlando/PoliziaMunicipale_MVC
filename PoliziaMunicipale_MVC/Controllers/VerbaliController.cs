@@ -16,12 +16,16 @@ namespace PoliziaMunicipale_MVC.Controllers
         public static List<Verbale> listaverbali = new List<Verbale>();
         public ActionResult Index()
         {
+            TempData["controllerDorigine"] = this.ControllerContext.RouteData.Values["controller"].ToString();
             connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                SqlCommand queryVisualizzaVerbali = new SqlCommand("SELECT * FROM Verbale", conn);
+                SqlCommand queryVisualizzaVerbali = new SqlCommand(
+                "SELECT Verbale.*, CONCAT(Anagrafica.Nome, ' ', Anagrafica.Cognome) AS NominativoTrasgressore " +
+                "FROM Verbale " +
+                "INNER JOIN Anagrafica ON Verbale.IdAnagrafica = Anagrafica.IdAnagrafica", conn);
                 SqlDataReader readerVerbali = queryVisualizzaVerbali.ExecuteReader();
                 while (readerVerbali.Read())
                 {
@@ -34,7 +38,7 @@ namespace PoliziaMunicipale_MVC.Controllers
                         DataTrascrizioneVerbale = Convert.ToDateTime(readerVerbali["DataTrascrizioneVerbale"]),
                         Importo = Convert.ToDecimal(readerVerbali["Importo"]),
                         DecurtamentoPunti = Convert.ToInt32(readerVerbali["DecurtamentoPunti"]),
-                        IdAnagrafica = Convert.ToInt32(readerVerbali["IdAnagrafica"]),
+                        NominativoTrasgressore = readerVerbali["NominativoTrasgressore"].ToString(),
                         IdViolazione = Convert.ToInt32(readerVerbali["IdViolazione"])
                     };
                     listaverbali.Add(verbale);
@@ -93,7 +97,7 @@ namespace PoliziaMunicipale_MVC.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult VisualizzaTotaleVerbaliTrascrittiPerTrasgressore()
+        public ActionResult VisualizzaTotaleVerbali()
         {
             connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
@@ -138,7 +142,7 @@ namespace PoliziaMunicipale_MVC.Controllers
             return View(trasgressoriVerbali);
         }
 
-        public ActionResult VisualizzaTotalePuntiDecurtatiPerTrasgressore()
+        public ActionResult VisualizzaTotalePunti()
         {
             connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
@@ -231,7 +235,7 @@ namespace PoliziaMunicipale_MVC.Controllers
             return View(listaViolazionePuntiDieci);
         }
 
-        public ActionResult VisualizzaViolazioniConImportoElevato()
+        public ActionResult VisualizzaViolazioniQuattrocento()
         {
             connectionString = ConfigurationManager.ConnectionStrings["PoliziaMunicipale"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
